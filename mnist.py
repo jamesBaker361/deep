@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
+import time
 
 # Device setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -43,6 +44,7 @@ optimizer = optim.Adam(model.parameters(), lr=1e-3)
 for epoch in range(1, 6):  # 5 epochs
     model.train()
     total_loss = 0
+    start=time.time()
     for x, y in train_loader:
         x, y = x.to(device), y.to(device)
         optimizer.zero_grad()
@@ -51,7 +53,8 @@ for epoch in range(1, 6):  # 5 epochs
         loss.backward()
         optimizer.step()
         total_loss += loss.item()
-    print(f"Epoch {epoch}, Loss: {total_loss:.2f}")
+    end=time.time()
+    print(f"Epoch {epoch}, Loss: {total_loss:.2f} elpased {end-start}")
 
 # 5. Evaluation
 model.eval()

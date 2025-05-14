@@ -1,5 +1,4 @@
 {
-    "train_batch_size": 64,
     "fp16": {
       "enabled": true
     },

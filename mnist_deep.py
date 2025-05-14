@@ -44,7 +44,7 @@ model = SimpleNN().to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=1e-3)
 
-model_engine, optimizer, _, _ = deepspeed.initialize(model=model, model_parameters=model.parameters(), optimizer=optimizer)
+model_engine, optimizer, _, _ = deepspeed.initialize(args={"deepspeed_config":"ds_config.json"},model=model, model_parameters=model.parameters(), optimizer=optimizer)
 
 # 4. Training loop
 for epoch in range(1, 6):  # 5 epochs

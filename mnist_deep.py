@@ -24,6 +24,8 @@ test_dataset  = datasets.MNIST(root='./data', train=False, download=True, transf
 train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 test_loader  = DataLoader(test_dataset, batch_size=1000, shuffle=False)
 
+torch_dtype=torch.float16
+
 # 2. Define the model
 class SimpleNN(nn.Module):
     def __init__(self):
@@ -39,6 +41,8 @@ class SimpleNN(nn.Module):
         return self.net(x)
 
 model = SimpleNN().to(device)
+
+
 
 # 3. Loss and Optimizer
 criterion = nn.CrossEntropyLoss()
@@ -56,7 +60,7 @@ for epoch in range(1, 6):  # 5 epochs
     total_loss = 0
     start=time.time()
     for x, y in train_loader:
-        x, y = x.to(device), y.to(device)
+        x, y = x.to(device,torch_dtype), y.to(device,torch_dtype)
         optimizer.zero_grad()
         out = model(x)
         loss = criterion(out, y)

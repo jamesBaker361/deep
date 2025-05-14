@@ -74,7 +74,7 @@ model.eval()
 correct = 0
 with torch.no_grad():
     for x, y in test_loader:
-        x, y = x.to(device), y.to(device)
+        x, y = x.to(device,torch_dtype), y.to(device)
         preds = model(x).argmax(dim=1)
         correct += (preds == y).sum().item()
 

@@ -60,7 +60,7 @@ for epoch in range(1, 6):  # 5 epochs
     total_loss = 0
     start=time.time()
     for x, y in train_loader:
-        x, y = x.to(device,torch_dtype), y.to(device,torch_dtype)
+        x, y = x.to(device,torch_dtype), y.to(device)
         optimizer.zero_grad()
         out = model(x)
         loss = criterion(out, y)

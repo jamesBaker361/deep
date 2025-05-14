@@ -4,6 +4,9 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import time
+from gpu_helpers import print_details
+
+print_details()
 
 # Device setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

@@ -45,5 +45,5 @@ export BRAIN_DATA_DIR='/scratch/jlb638/brain-diffuser/data'
 export CUDA_LAUNCH_BLOCKING="1"
 export SCIKIT_LEARN_DATA="/scratch/jlb638/scikit-learn-data"
 export BRAIN_DATA_DIR="/scratch/jlb638/brain/data"
-srun accelerate launch --config_file config.yaml $@
+srun accelerate launch  $@
 conda deactivate
